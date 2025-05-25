@@ -1,7 +1,7 @@
 FROM --platform=linux/arm64 golang:1.23-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN go build -o app
+RUN GOARCH=arm64 go build -o app 
 
 FROM --platform=linux/arm64 alpine:latest
 WORKDIR /root/
