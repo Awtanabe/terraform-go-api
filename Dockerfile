@@ -1,9 +1,9 @@
-FROM --platform=linux/arm64 golang:1.23-alpine AS builder
+FROM golang:1.23-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN GOARCH=arm64 go build -o app 
+RUN go build -o app 
 
-FROM --platform=linux/arm64 alpine:latest
+FROM alpine:latest
 WORKDIR /root/
 COPY --from=builder /app/app .
 EXPOSE 8080
