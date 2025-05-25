@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN go build -o app
 
-FROM alpine
+FROM --platform=linux/arm64 alpine:latest
 WORKDIR /root/
 COPY --from=builder /app/app .
 EXPOSE 8080

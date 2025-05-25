@@ -22,7 +22,7 @@ phases:
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
   build:
     commands:
-      - docker build -t go-api .
+      - docker build --platform=linux/arm64 -t go-api .
       - docker tag go-api:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/go-api:latest
   post_build:
     commands:
