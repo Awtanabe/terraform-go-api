@@ -24,7 +24,7 @@ phases:
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
   build:
     commands:
-      - docker build -t terraform-go-api .
+      - docker build --platform=linux/x86_64 -t terraform-go-api .
       - docker tag terraform-go-api:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/terraform-go-api:latest
   post_build:
     commands:
