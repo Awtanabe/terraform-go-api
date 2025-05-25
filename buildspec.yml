@@ -22,12 +22,12 @@ phases:
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
   build:
     commands:
-      - docker build --platform=linux/arm64 -t go-api .
-      - docker tag go-api:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/go-api:latest
+      - docker build --platform=linux/arm64 -t terraform-go-api .
+      - docker tag terraform-go-api:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/terraform-go-api:latest
   post_build:
     commands:
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/go-api:latest
-      - printf '[{"name":"go-api","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/go-api:latest > imagedefinitions.json
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/terraform-go-api:latest
+      - printf '[{"name":"terraform-go-api","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/terraform-go-api:latest > imagedefinitions.json
 
 artifacts:
   files:
