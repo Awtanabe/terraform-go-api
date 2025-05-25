@@ -12,6 +12,7 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello from Echo!")
 	})
+	// 再度テスト
 	// テスト
 	e.Logger.Fatal(e.Start(":8080"))
 }
